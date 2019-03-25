@@ -40,6 +40,7 @@
 #include "ripemd160.h"
 #include "sha1.h"
 #include "sha2.h"
+#include "sha3.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -68,6 +69,18 @@ extern "C" {
 #define hmac_sha512_set_key nettle_hmac_sha512_set_key
 #define hmac_sha512_update nettle_hmac_sha512_update
 #define hmac_sha512_digest nettle_hmac_sha512_digest
+#define hmac_sha3_224_set_key nettle_hmac_sha3_224_set_key
+#define hmac_sha3_224_update nettle_hmac_sha3_224_update
+#define hmac_sha3_224_digest nettle_hmac_sha3_224_digest
+#define hmac_sha3_256_set_key nettle_hmac_sha3_256_set_key
+#define hmac_sha3_256_update nettle_hmac_sha3_256_update
+#define hmac_sha3_256_digest nettle_hmac_sha3_256_digest
+#define hmac_sha3_384_set_key nettle_hmac_sha3_384_set_key
+#define hmac_sha3_384_update nettle_hmac_sha3_384_update
+#define hmac_sha3_384_digest nettle_hmac_sha3_384_digest
+#define hmac_sha3_512_set_key nettle_hmac_sha3_512_set_key
+#define hmac_sha3_512_update nettle_hmac_sha3_512_update
+#define hmac_sha3_512_digest nettle_hmac_sha3_512_digest
 
 void
 hmac_set_key(void *outer, void *inner, void *state,
@@ -201,6 +214,66 @@ hmac_sha384_set_key(struct hmac_sha512_ctx *ctx,
 
 void
 hmac_sha384_digest(struct hmac_sha512_ctx *ctx,
+		   size_t length, uint8_t *digest);
+
+/* hmac-sha3-224 */
+struct hmac_sha3_224_ctx HMAC_CTX(struct sha3_224_ctx);
+
+void
+hmac_sha3_224_set_key(struct hmac_sha3_224_ctx *ctx,
+		    size_t key_length, const uint8_t *key);
+
+void
+hmac_sha3_224_update(struct hmac_sha3_224_ctx *ctx,
+		   size_t length, const uint8_t *data);
+
+void
+hmac_sha3_224_digest(struct hmac_sha3_224_ctx *ctx,
+		   size_t length, uint8_t *digest);
+
+/* hmac-sha3-256 */
+struct hmac_sha3_256_ctx HMAC_CTX(struct sha3_256_ctx);
+
+void
+hmac_sha3_256_set_key(struct hmac_sha3_256_ctx *ctx,
+		    size_t key_length, const uint8_t *key);
+
+void
+hmac_sha3_256_update(struct hmac_sha3_256_ctx *ctx,
+		   size_t length, const uint8_t *data);
+
+void
+hmac_sha3_256_digest(struct hmac_sha3_256_ctx *ctx,
+		   size_t length, uint8_t *digest);
+
+/* hmac-sha3-384 */
+struct hmac_sha3_384_ctx HMAC_CTX(struct sha3_384_ctx);
+
+void
+hmac_sha3_384_set_key(struct hmac_sha3_384_ctx *ctx,
+		    size_t key_length, const uint8_t *key);
+
+void
+hmac_sha3_384_update(struct hmac_sha3_384_ctx *ctx,
+		   size_t length, const uint8_t *data);
+
+void
+hmac_sha3_384_digest(struct hmac_sha3_384_ctx *ctx,
+		   size_t length, uint8_t *digest);
+
+/* hmac-sha3-512 */
+struct hmac_sha3_512_ctx HMAC_CTX(struct sha3_512_ctx);
+
+void
+hmac_sha3_512_set_key(struct hmac_sha3_512_ctx *ctx,
+		    size_t key_length, const uint8_t *key);
+
+void
+hmac_sha3_512_update(struct hmac_sha3_512_ctx *ctx,
+		   size_t length, const uint8_t *data);
+
+void
+hmac_sha3_512_digest(struct hmac_sha3_512_ctx *ctx,
 		   size_t length, uint8_t *digest);
 
 #ifdef __cplusplus

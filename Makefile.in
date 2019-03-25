@@ -105,6 +105,7 @@ nettle_SOURCES = aes-decrypt-internal.c aes-decrypt.c \
 		 gosthash94.c gosthash94-meta.c \
 		 hmac.c hmac-md5.c hmac-ripemd160.c hmac-sha1.c \
 		 hmac-sha224.c hmac-sha256.c hmac-sha384.c hmac-sha512.c \
+		 hmac-sha3-224.c hmac-sha3-256.c hmac-sha3-384.c hmac-sha3-512.c \
 		 knuth-lfib.c hkdf.c \
 		 md2.c md2-meta.c md4.c md4-meta.c \
 		 md5.c md5-compress.c md5-compat.c md5-meta.c \
