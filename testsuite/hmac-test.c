@@ -894,4 +894,319 @@ test_main(void)
 		 "b1ff68a1de45509fbe4da9a433922655"));
 
   /* Test case AUTH512-3 from same document seems broken. */
+
+  /* Test vectors for HMAC-SHA3 using the input from RFC 4231 */
+
+  /* Test case 1 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+		 "0b0b0b0b"),
+		SDATA("Hi There"),
+		SHEX("3b16546bbc7be2706a031dcafd56373d"
+		 "9884367641d8c59af3c860f7"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+		 "0b0b0b0b"),
+		SDATA("Hi There"),
+		SHEX("ba85192310dffa96e2a3a40e69774351"
+		 "140bb7185e1202cdcc917589f95e16bb"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+		 "0b0b0b0b"),
+		SDATA("Hi There"),
+		SHEX("68d2dcf7fd4ddd0a2240c8a437305f61"
+		 "fb7334cfb5d0226e1bc27dc10a2e723a"
+		 "20d370b47743130e26ac7e3d532886bd"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"
+		 "0b0b0b0b"),
+		SDATA("Hi There"),
+		SHEX("eb3fbd4b2eaab8f5c504bd3a41465aac"
+		 "ec15770a7cabac531e482f860b5ec7ba"
+		 "47ccb2c6f2afce8f88d22b6dc61380f2"
+		 "3a668fd3888bb80537c0a0b86407689e"));
+
+  /* Test case 2 */
+
+  HMAC_TEST(sha3_224,
+		SDATA("Jefe"),
+		SDATA("what do ya want for nothing?"),
+		SHEX("7fdb8dd88bd2f60d1b798634ad386811"
+		 "c2cfc85bfaf5d52bbace5e66"));
+
+  HMAC_TEST(sha3_256,
+		SDATA("Jefe"),
+		SDATA("what do ya want for nothing?"),
+		SHEX("c7d4072e788877ae3596bbb0da73b887"
+		 "c9171f93095b294ae857fbe2645e1ba5"));
+
+  HMAC_TEST(sha3_384,
+		SDATA("Jefe"),
+		SDATA("what do ya want for nothing?"),
+		SHEX("f1101f8cbf9766fd6764d2ed61903f21"
+		 "ca9b18f57cf3e1a23ca13508a93243ce"
+		 "48c045dc007f26a21b3f5e0e9df4c20a"));
+
+  HMAC_TEST(sha3_512,
+		SDATA("Jefe"),
+		SDATA("what do ya want for nothing?"),
+		SHEX("5a4bfeab6166427c7a3647b747292b83"
+		 "84537cdb89afb3bf5665e4c5e709350b"
+		 "287baec921fd7ca0ee7a0c31d022a95e"
+		 "1fc92ba9d77df883960275beb4e62024"));
+
+  /* Test case 3 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaa"),
+		SHEX("dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddd"),
+		SHEX("676cfc7d16153638780390692be142d2"
+		 "df7ce924b909c0c08dbfdc1a"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaa"),
+		SHEX("dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddd"),
+		SHEX("84ec79124a27107865cedd8bd82da996"
+		 "5e5ed8c37b0ac98005a7f39ed58a4207"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaa"),
+		SHEX("dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddd"),
+		SHEX("275cd0e661bb8b151c64d288f1f782fb"
+		 "91a8abd56858d72babb2d476f0458373"
+		 "b41b6ab5bf174bec422e53fc3135ac6e"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaa"),
+		SHEX("dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddddddddddddddddddddddddddddddd"
+		 "dddd"),
+		SHEX("309e99f9ec075ec6c6d475eda1180687"
+		 "fcf1531195802a99b5677449a8625182"
+		 "851cb332afb6a89c411325fbcbcd42af"
+		 "cb7b6e5aab7ea42c660f97fd8584bf03"));
+
+  /* Test case 4 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("0102030405060708090a0b0c0d0e0f10"
+		 "111213141516171819"),
+		SHEX("cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcd"),
+		SHEX("a9d7685a19c4e0dbd9df2556cc8a7d2a"
+		 "7733b67625ce594c78270eeb"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("0102030405060708090a0b0c0d0e0f10"
+		 "111213141516171819"),
+		SHEX("cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcd"),
+		SHEX("57366a45e2305321a4bc5aa5fe2ef8a9"
+		 "21f6af8273d7fe7be6cfedb3f0aea6d7"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("0102030405060708090a0b0c0d0e0f10"
+		 "111213141516171819"),
+		SHEX("cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcd"),
+		SHEX("3a5d7a879702c086bc96d1dd8aa15d9c"
+		 "46446b95521311c606fdc4e308f4b984"
+		 "da2d0f9449b3ba8425ec7fb8c31bc136"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("0102030405060708090a0b0c0d0e0f10"
+		 "111213141516171819"),
+		SHEX("cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+		 "cdcd"),
+		SHEX("b27eab1d6e8d87461c29f7f5739dd58e"
+		 "98aa35f8e823ad38c5492a2088fa0281"
+		 "993bbfff9a0e9c6bf121ae9ec9bb09d8"
+		 "4a5ebac817182ea974673fb133ca0d1d"));
+
+  /* Test case 5 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+		 "0c0c0c0c"),
+		SDATA("Test With Truncation"),
+		SHEX("49fdd3abd005ebb8ae63fea946d1883c"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+		 "0c0c0c0c"),
+		SDATA("Test With Truncation"),
+		SHEX("6e02c64537fb118057abb7fb66a23b3c"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+		 "0c0c0c0c"),
+		SDATA("Test With Truncation"),
+		SHEX("47c51ace1ffacffd7494724682615783"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c"
+		 "0c0c0c0c"),
+		SDATA("Test With Truncation"),
+		SHEX("0fa7475948f43f48ca0516671e18978c"));
+
+  /* Test case 6 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("Test Using Larger Than Block-Size Key - Hash Key First"),
+		SHEX("b4a1f04c00287a9b7f6075b313d279b8"
+		 "33bc8f75124352d05fb9995f"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("Test Using Larger Than Block-Size Key - Hash Key First"),
+		SHEX("ed73a374b96c005235f948032f09674a"
+		 "58c0ce555cfc1f223b02356560312c3b"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("Test Using Larger Than Block-Size Key - Hash Key First"),
+		SHEX("0fc19513bf6bd878037016706a0e57bc"
+		 "528139836b9a42c3d419e498e0e1fb96"
+		 "16fd669138d33a1105e07c72b6953bcc"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("Test Using Larger Than Block-Size Key - Hash Key First"),
+		SHEX("00f751a9e50695b090ed6911a4b65524"
+		 "951cdc15a73a5d58bb55215ea2cd839a"
+		 "c79d2b44a39bafab27e83fde9e11f634"
+		 "0b11d991b1b91bf2eee7fc872426c3a4"));
+
+  /* Test case 7 */
+
+  HMAC_TEST(sha3_224,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("This is a test using a larger than block-size ke"
+		  "y and a larger than block-size data. The key nee"
+		  "ds to be hashed before being used by the HMAC al"
+		  "gorithm."),
+		SHEX("05d8cd6d00faea8d1eb68ade28730bbd"
+		 "3cbab6929f0a086b29cd62a0"));
+
+  HMAC_TEST(sha3_256,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("This is a test using a larger than block-size ke"
+		  "y and a larger than block-size data. The key nee"
+		  "ds to be hashed before being used by the HMAC al"
+		  "gorithm."),
+		SHEX("65c5b06d4c3de32a7aef8763261e49ad"
+		 "b6e2293ec8e7c61e8de61701fc63e123"));
+
+  HMAC_TEST(sha3_384,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("This is a test using a larger than block-size ke"
+		  "y and a larger than block-size data. The key nee"
+		  "ds to be hashed before being used by the HMAC al"
+		  "gorithm."),
+		SHEX("026fdf6b50741e373899c9f7d5406d4e"
+		 "b09fc6665636fc1a530029ddf5cf3ca5"
+		 "a900edce01f5f61e2f408cdf2fd3e7e8"));
+
+  HMAC_TEST(sha3_512,
+		SHEX("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+		 "aaaaaa"),
+		SDATA("This is a test using a larger than block-size ke"
+		  "y and a larger than block-size data. The key nee"
+		  "ds to be hashed before being used by the HMAC al"
+		  "gorithm."),
+		SHEX("38a456a004bd10d32c9ab83366841128"
+		 "62c3db61adcca31829355eaf46fd5c73"
+		 "d06a1f0d13fec9a652fb3811b577b1b1"
+		 "d1b9789f97ae5b83c6f44dfcf1d67eba"));
+
 }
